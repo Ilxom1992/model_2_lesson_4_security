@@ -2,10 +2,11 @@ package com.example.demo.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import javax.xml.crypto.Data;
 import java.util.Date;
-
+@Component
 public class JwtPrivider {
     long expireTime=36_000_000;
 static String sectret="Yangi parol login";
