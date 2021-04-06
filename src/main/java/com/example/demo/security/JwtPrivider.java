@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.util.Date;
 @Component
@@ -22,6 +23,27 @@ return token;
 
 }
 
-
+public  boolean validateToken(String token){
+ try {
+     Jwts
+             .parser()
+             .setSigningKey(sectret)
+             .parseClaimsJws(token);
+     return true;
+ }catch (Exception e){
+     e.printStackTrace();
+ }
+        return false;
 
 }
+public  String getUserNameFromToken(String token) {
+    String username = Jwts
+            .parser()
+            .setSigningKey(sectret)
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
+    return username;
+}
+}
+
